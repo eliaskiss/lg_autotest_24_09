@@ -33,8 +33,19 @@ def openSerial(port, baudrate=9600, bytesize=serial.EIGHTBITS, parity=serial.PAR
 
     return ser
 
+################################################################
+# Write Port
+################################################################
+def writePort(ser, data):
+    ser.write(data)
+
 if __name__ == '__main__':
+    # 포트열기
     ser = openSerial(port='com2')
+
+    # 포트쓰기
+    writePort(ser, "HelloWorld")
+
     time.sleep(10)
 
 
