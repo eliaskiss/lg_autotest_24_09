@@ -71,7 +71,7 @@ def readUntilExitCode(ser, code=b'\x03'):
         readed += data
 
         if data == code:
-            return readed
+            return readed[:-1]
 
 if __name__ == '__main__':
     # 포트열기
@@ -91,6 +91,9 @@ if __name__ == '__main__':
 
     # # EOF 까지 읽기
     # ic(readEOF(ser))
+
+    # # 특정코드(Ctrl + C)가 들어올때까지 읽기
+    # ic(readUntilExitCode(ser))
 
     # time.sleep(10)
 
