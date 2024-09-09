@@ -59,6 +59,19 @@ def readEOF(ser):
     readed = ser.readline()
     return readed[:-1]
 
+################################################################
+# Read Until ExitCode
+# Ctrl + C  가 들어올때까지
+################################################################
+def readUntilExitCode(ser, code=b'\x03'):
+    readed = b''
+    while True:
+        data = ser.read()
+        ic(data)
+        readed += data
+
+        if data == code:
+            return readed
 
 if __name__ == '__main__':
     # 포트열기
@@ -76,8 +89,8 @@ if __name__ == '__main__':
     # # 10 byte 읽기
     # ic(read(ser, 10))
 
-    # EOF 까지 읽기
-    ic(readEOF(ser))
+    # # EOF 까지 읽기
+    # ic(readEOF(ser))
 
     # time.sleep(10)
 
