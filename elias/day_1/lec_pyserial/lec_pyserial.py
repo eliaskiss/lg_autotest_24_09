@@ -51,6 +51,14 @@ def read(ser, size=1, timeout=None):
     readed = ser.read(size)
     return readed
 
+################################################################
+# Read EOF
+# Putty에서 EOF --> Ctrl + j
+################################################################
+def readEOF(ser):
+    readed = ser.readline()
+    return readed[:-1]
+
 
 if __name__ == '__main__':
     # 포트열기
@@ -65,8 +73,11 @@ if __name__ == '__main__':
     # # 1 byte만 읽기
     # ic(read(ser))
 
-    # 10 byte 읽기
-    ic(read(ser, 10))
+    # # 10 byte 읽기
+    # ic(read(ser, 10))
+
+    # EOF 까지 읽기
+    ic(readEOF(ser))
 
     # time.sleep(10)
 
