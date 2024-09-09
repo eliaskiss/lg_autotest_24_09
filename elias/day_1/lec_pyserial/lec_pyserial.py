@@ -9,7 +9,7 @@ ic.configureOutput(includeContext=True)
 # Open Serial
 ################################################################
 def openSerial(port, baudrate=9600, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
-               stopbits=serial.STOPBITS_ONE, timeout=None, xonxoff=False, rtscst=False,
+               stopbits=serial.STOPBITS_ONE, timeout=None, xonxoff=False, rtscts=False,
                dsrdtr=False):
 
     # 시리얼 포트객체 생성
@@ -22,7 +22,7 @@ def openSerial(port, baudrate=9600, bytesize=serial.EIGHTBITS, parity=serial.PAR
     ser.parity = parity         # Check Parity
     ser.timeout = timeout       # None: 무한대기, 0: Non_Blocking Mode, N: n초 대기
     ser.xonxoff = xonxoff       # SW Flow Control
-    ser.rtscts = rtscst         # RTS/CTS Flow Control
+    ser.rtscts = rtscts         # RTS/CTS Flow Control
     ser.dsrdtr = dsrdtr         # DSR/DTR Flow Control
 
     # 시리얼 포트열기
@@ -39,14 +39,20 @@ def openSerial(port, baudrate=9600, bytesize=serial.EIGHTBITS, parity=serial.PAR
 def writePort(ser, data):
     ser.write(data)
 
+def writePortUnicode(ser, data, encode='utf-8'):
+    writePort(ser, data.encode(encode))
+
 if __name__ == '__main__':
     # 포트열기
     ser = openSerial(port='com2')
 
     # 포트쓰기
-    writePort(ser, "HelloWorld")
+    data = "HelloWorld"
+    enc_data = data.encode()
+    writePort(ser, enc_data)        # 인코딩 후 인자로 전달
+    writePortUnicode(ser, data)     # 인코딩 없이 인자로 전달
 
-    time.sleep(10)
+    # time.sleep(10)
 
 
 
