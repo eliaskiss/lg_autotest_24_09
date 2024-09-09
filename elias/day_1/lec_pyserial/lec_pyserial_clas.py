@@ -80,29 +80,28 @@ class MySerial:
 
 if __name__ == '__main__':
     # 포트열기
-    ser = openSerial(port='com2')
+    ser = MySerial()
+    ser.openSerial(port='com2')
 
     # # 포트쓰기
     # data = "HelloWorld"
     # enc_data = data.encode()
-    # writePort(ser, enc_data)        # 인코딩 후 인자로 전달
-    # writePortUnicode(ser, data)     # 인코딩 없이 인자로 전달
+    # ser.writePort(enc_data)        # 인코딩 후 인자로 전달
+    # ser.writePortUnicode(data)     # 인코딩 없이 인자로 전달
 
     # # 1 byte만 읽기
-    # ic(read(ser))
+    # ic(ser.read())
 
     # # 10 byte 읽기
-    # ic(read(ser, 10))
+    # ic(ser.read(10))
 
     # # EOF 까지 읽기
-    # ic(readEOF(ser))
+    # ic(ser.readEOF())
 
     # # 특정코드(Ctrl + C)가 들어올때까지 읽기
-    # ic(readUntilExitCode(ser))
+    # ic(ser.readUntilExitCode())
 
-    # time.sleep(10)
-
-    closePort(ser)
+    ser.closePort()
 
 
 
