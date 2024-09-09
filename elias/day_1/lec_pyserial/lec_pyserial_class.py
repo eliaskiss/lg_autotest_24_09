@@ -37,7 +37,8 @@ class MySerial:
     # Write Port
     ################################################################
     def writePort(self, data):
-        self.ser.write(data)
+        if self.ser is not None:
+            self.ser.write(data)
 
     def writePortUnicode(self, data, encode='utf-8'):
         self.writePort(data.encode(encode))
@@ -66,7 +67,7 @@ class MySerial:
         readed = b''
         while True:
             data = self.ser.read()
-            ic(data)
+            # ic(data)
             readed += data
 
             if data == code:
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     # ser.writePortUnicode(data)     # 인코딩 없이 인자로 전달
 
     # # 1 byte만 읽기
-    # ic(ser.read())
+    # ic(ser.read(1, 5))
 
     # # 10 byte 읽기
     # ic(ser.read(10))
