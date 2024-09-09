@@ -73,6 +73,12 @@ def readUntilExitCode(ser, code=b'\x03'):
         if data == code:
             return readed[:-1]
 
+################################################################
+# Close Port
+################################################################
+def closePort(ser):
+    ser.close()
+
 if __name__ == '__main__':
     # 포트열기
     ser = openSerial(port='com2')
@@ -96,6 +102,8 @@ if __name__ == '__main__':
     # ic(readUntilExitCode(ser))
 
     # time.sleep(10)
+
+    closePort(ser)
 
 
 
