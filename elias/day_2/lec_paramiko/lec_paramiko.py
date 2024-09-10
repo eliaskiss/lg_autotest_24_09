@@ -81,6 +81,11 @@ if __name__ == '__main__':
     ssh = MySSH()
     if ssh.connect('139.150.73.242', 'elias', '1111', timeout=5, port=22):
         ic('SSH is connected')
+
+        ###############################################################
+        # Process List 파일생성 (ps -ef > process_list.txt)
+        ###############################################################
+        ssh.exeCommand('ps -ef > process_list.txt')
     else:
         ic('SSH is failed')
 
