@@ -81,13 +81,17 @@ if __name__ == '__main__':
     # img_info = pillow.get_info(img_file_path)
     # ic(img_info)
 
+    # ######################################################
+    # # 이미지 포맷변경
+    # ######################################################
+    # new_image = pillow.convert_format(img_file_path, 'png')
+    # ic(pillow.get_info(new_image))
+
     ######################################################
-    # 이미지 포맷변경
+    # 썸네일 이미지 만들기
     ######################################################
-    new_image = pillow.convert_format(img_file_path, 'png')
+    new_image = pillow.make_thumbnail(img_file_path)
     ic(pillow.get_info(new_image))
-
-
 
 
 
