@@ -110,7 +110,7 @@ if __name__ == '__main__':
         # Shell Script 파일생성 후 실행권한을 주고 실행
         ###############################################################
         ssh.exeCommand('echo "ps -ef > process_list.txt" > make_process_list.sh')   # shell script 파일생성
-        ssh.exeCommand('chmod +x ./make_proces_list.sh')                            # 실행권한 추가
+        ssh.exeCommand('chmod +x ./make_process_list.sh')                            # 실행권한 추가
         ssh.exeCommand('./make_process_list.sh')                                    # shell script 실행
 
 
