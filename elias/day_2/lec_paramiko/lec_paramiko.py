@@ -89,21 +89,6 @@ class MySSH:
         self.ftp_client.get(srcFilePath, dstFilePath)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     ssh = MySSH()
     if ssh.connect('139.150.73.242', 'elias', '1111', timeout=5, port=22):
@@ -145,6 +130,11 @@ if __name__ == '__main__':
         # ###############################################################
         # ssh.exeCommand('sudo mkdir /temp/elias')
         # ssh.sudoCommand('mkdir /temp/elias')
+
+        ###############################################################
+        # 서버로 부터 파일 가져오기
+        ###############################################################
+        ssh.getFromHost('./process_list.txt', './process_list.txt')
 
 
     else:
