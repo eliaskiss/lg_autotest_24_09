@@ -304,23 +304,23 @@ if __name__ == '__main__':
     #     new_image = pillow.apply_filter(img_file_path, filter)
     #     ic(new_image)
 
-    ###############################################################
-    # Merge Image
-    ###############################################################
-    row = 2
-    column = 3
-
-    # 빈 캔버스 이미지 객체 생성
-    merge_image = pillow.merge_create_image(row, column, img_file_path)
-
-    # 각 행/열의 이미지 복사
-    for _row in range(row):  # 0, 1
-        for _column in range(column):  # 0, 1, 2
-            pillow.merge_paste_image(merge_image, _row, _column, img_file_path)
-
-    # Merged된 이미지 파일 저장
-    new_image = pillow.merge_save(merge_image, img_file_path)
-    ic(new_image)
+    # ###############################################################
+    # # Merge Image
+    # ###############################################################
+    # row = 2
+    # column = 3
+    #
+    # # 빈 캔버스 이미지 객체 생성
+    # merge_image = pillow.merge_create_image(row, column, img_file_path)
+    #
+    # # 각 행/열의 이미지 복사
+    # for _row in range(row):  # 0, 1
+    #     for _column in range(column):  # 0, 1, 2
+    #         pillow.merge_paste_image(merge_image, _row, _column, img_file_path)
+    #
+    # # Merged된 이미지 파일 저장
+    # new_image = pillow.merge_save(merge_image, img_file_path)
+    # ic(new_image)
 
 
 
