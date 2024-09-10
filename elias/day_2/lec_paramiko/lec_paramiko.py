@@ -78,6 +78,18 @@ class MySSH:
         else:
             ic('Client is not connected!!!')
 
+    #########################################################
+    # Get File From Host (SFTP)
+    # srcFilePath: Server(host), dstFilePath: Local(PC, Client)
+    #########################################################
+    def getFromHost(self, srcFilePath, dstFilePath):
+        if self.ftp_client is None:
+            # Get SFTP object from SSHClient
+            self.ftp_client = self.client.open_sftp()
+        self.ftp_client.get(srcFilePath, dstFilePath)
+
+
+
 
 
 
@@ -128,11 +140,11 @@ if __name__ == '__main__':
         # ssh.exeCommand('chmod +x ./make_process_list.sh')                            # 실행권한 추가
         # ssh.exeCommand('./make_process_list.sh')                                    # shell script 실행
 
-        ###############################################################
-        # sudo 커맨드 실행
-        ###############################################################
+        # ###############################################################
+        # # sudo 커맨드 실행
+        # ###############################################################
         # ssh.exeCommand('sudo mkdir /temp/elias')
-        ssh.sudoCommand('mkdir /temp/elias')
+        # ssh.sudoCommand('mkdir /temp/elias')
 
 
     else:
