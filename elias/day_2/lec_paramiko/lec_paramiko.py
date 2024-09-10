@@ -141,10 +141,15 @@ if __name__ == '__main__':
         # ssh.exeCommand('sudo mkdir /temp/elias')
         # ssh.sudoCommand('mkdir /temp/elias')
 
+        # ###############################################################
+        # # 서버로 부터 파일 가져오기
+        # ###############################################################
+        # ssh.getFromHost('./process_list.txt', './process_list.txt')
+
         ###############################################################
-        # 서버로 부터 파일 가져오기
+        # 서버로 부터 파일 업로드하기
         ###############################################################
-        ssh.getFromHost('./process_list.txt', './process_list.txt')
+        ssh.putToHost('./process_list.txt', './process_list_2.txt')
 
 
     else:
