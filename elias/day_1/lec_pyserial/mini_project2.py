@@ -35,3 +35,4 @@ from lec_pyserial_class import MySerial
 import json
 from datetime import datetime, timedelta
 from icecream import ic
+
