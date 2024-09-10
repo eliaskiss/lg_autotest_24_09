@@ -63,6 +63,21 @@ class MySSH:
         else:
             ic('Client is not connected!!!')
 
+    #####################################################################
+    # Execute Shell Command as root (sudo)
+    #####################################################################
+    def sudoCommand(self, command, isReturn=False):
+        if self.isAlive():
+            stdin, stdout, stderr = self.client.exec_command('sudo ' + command, get_pty=True)
+
+            stdin.write(self.password + '\n')
+            time.sleep(0.1)
+
+            if isReturn is True:
+                return stdout.readlines()
+        else:
+            ic('Client is not connected!!!')
+
 
 
 
@@ -106,12 +121,18 @@ if __name__ == '__main__':
         # # & - 앞의 명령어를 background로 실행하고 나서 뒤에 명령어를 실행
         # ssh.exeCommand('cd temp && ps ?-ef > process_list.txt')  # process_list.txt 파일생성
 
+        # ###############################################################
+        # # Shell Script 파일생성 후 실행권한을 주고 실행
+        # ###############################################################
+        # ssh.exeCommand('echo "ps -ef > process_list.txt" > make_process_list.sh')   # shell script 파일생성
+        # ssh.exeCommand('chmod +x ./make_process_list.sh')                            # 실행권한 추가
+        # ssh.exeCommand('./make_process_list.sh')                                    # shell script 실행
+
         ###############################################################
-        # Shell Script 파일생성 후 실행권한을 주고 실행
+        # sudo 커맨드 실행
         ###############################################################
-        ssh.exeCommand('echo "ps -ef > process_list.txt" > make_process_list.sh')   # shell script 파일생성
-        ssh.exeCommand('chmod +x ./make_process_list.sh')                            # 실행권한 추가
-        ssh.exeCommand('./make_process_list.sh')                                    # shell script 실행
+        # ssh.exeCommand('sudo mkdir /temp/elias')
+        ssh.sudoCommand('mkdir /temp/elias')
 
 
     else:
