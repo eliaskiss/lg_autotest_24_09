@@ -36,6 +36,25 @@ class Pillow:
                  'Height':img.height,
                  'Mode':img.mode})
 
+    ######################################################
+    # Convert Image Format
+    ######################################################
+    def convert_format(self, img_file_path, format):
+        img = Image.open(img_file_path)
+
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+
+        # /image/buz.jpg --> /image/buz.png
+        dir = os.path.dirname(img_file_path)            # image\buz.jpg --> image
+        # abs_path = os.path.abspath(img_file_path)     # 'C:\\source\\lg_autotest_24_09\\elias\\day_2\\lec_pillow\\image\\buz.jpg'
+        file_name = os.path.basename(img_file_path)     # buz.jpg
+        file_name = file_name.split('.')[0]             # buz
+        file_name += f'.{format}'                       # buz.png
+        path = os.path.join(dir, file_name)             # image + buz.png --> image\buz.png
+        img.save(path)
+        return path
+
 if __name__ == '__main__':
     img_file_path = './image/buz.jpg'
 
