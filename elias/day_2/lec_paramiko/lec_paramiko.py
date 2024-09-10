@@ -87,13 +87,30 @@ if __name__ == '__main__':
         # ###############################################################
         # ssh.exeCommand('ps -ef > process_list.txt')
 
+        # ###############################################################
+        # # 파일목록 가져오기 (ls -al)
+        # ###############################################################
+        # file_list = ssh.exeCommand('ls -al', isReturn=True)
+        # # ic(file_list)
+        # for file in file_list:
+        #     print(file, end='')
+
+        # ###############################################################
+        # # temp 폴더로 이동 후 process_list.txt 파일 생성
+        # ###############################################################
+        # ssh.exeCommand('cd temp') # temp폴더로 이동
+        # ssh.exeCommand('ps -ef > process_list.txt') # process_list.txt 파일생성
+        #
+        # # ; - 앞의 명령어가 실패해도, 뒤에 명령어를 실행
+        # # && - 앞의 명령어가 성공했을때만, 뒤에 명령어를 실행
+        # # & - 앞의 명령어를 background로 실행하고 나서 뒤에 명령어를 실행
+        # ssh.exeCommand('cd temp && ps ?-ef > process_list.txt')  # process_list.txt 파일생성
+
         ###############################################################
-        # 파일목록 가져오기 (ls -al)
+        # temp 폴더로 이동 후 process_list.txt 파일 생성
         ###############################################################
-        file_list = ssh.exeCommand('ls -al', isReturn=True)
-        # ic(file_list)
-        for file in file_list:
-            print(file, end='')
+
+
 
     else:
         ic('SSH is failed')
