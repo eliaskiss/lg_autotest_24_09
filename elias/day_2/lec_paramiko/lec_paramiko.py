@@ -300,7 +300,7 @@ if __name__ == '__main__':
         # ######################################################################
         # # Put file to host with scp
         # ###############################################################
-        # ssh.putToHostWithSCP('./process_list.txt', 'process_list2.txt')
+        # ssh.putToHostWithSCP('./process_list.txt', 'process_list_3.txt')
 
         # ######################################################################
         # # Get folder from host with scp
@@ -310,7 +310,7 @@ if __name__ == '__main__':
         # ######################################################################
         # # Put folder to host with scp
         # ###############################################################
-        # ssh.putFolderToHostSCP('temp', 'temp')
+        # ssh.putFolderToHostSCP('temp', 'temp2')
     else:
         ic('SSH is failed')
 
