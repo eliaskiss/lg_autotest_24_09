@@ -32,6 +32,9 @@ class MySSH:
         if self.client is None:
             self.client = SSHClient()
 
+            # 이 코드를 추가해야만
+            # 'not found in known hosts'라는 예외가 발생하지 않음
+            self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             self.client.connect(hostname=host, port=port, username=user_id,
                                 password=user_password, timeout=timeout)
 
@@ -41,7 +44,12 @@ class MySSH:
             else:
                 return False
 
-
+if __name__ == '__main__':
+    ssh = MySSH()
+    if ssh.connect('139.150.73.242', 'elias', '1111', timeout=5, port=22):
+        ic('SSH is connected')
+    else:
+        ic('SSH is failed')
 
 
 
