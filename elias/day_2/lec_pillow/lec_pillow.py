@@ -258,23 +258,25 @@ if __name__ == '__main__':
     # # 이미지 크기변경
     # ###############################################################
     # new_image = pillow.resize_image(img_file_path, 300, 300)
-    # ic(new_image)
+    # ic(pillow.get_info(new_image))
 
     # ###############################################################
     # # 이미지 상대적 크기변경
     # ###############################################################
     # new_image = pillow.relative_resize_image(img_file_path, 300, 300, 'contain')
+    # ic(pillow.get_info(new_image))
     # new_image = pillow.relative_resize_image(img_file_path, 300, 300, 'cover')
+    # ic(pillow.get_info(new_image))
     # new_image = pillow.relative_resize_image(img_file_path, 300, 300, 'fit')
+    # ic(pillow.get_info(new_image))
     # new_image = pillow.relative_resize_image(img_file_path, 300, 300, 'pad')
-    # ic(new_image)
+    # ic(pillow.get_info(new_image))
 
     # ###############################################################
     # # 이미지 회전
     # ###############################################################
-    # new_image = pillow.rotate_image(img_file_path, 90, True)
-    # # new_image = pillow.rotate_image(img_file_path, 90, False)
-    # # ic(new_image)
+    # # new_image = pillow.rotate_image(img_file_path, 90, True)
+    # new_image = pillow.rotate_image(img_file_path, 90, False)
 
     # ##################################################
     # # 이미지 변형
@@ -284,12 +286,11 @@ if __name__ == '__main__':
     # img_info = pillow.transpose_image(img_file_path, Image.Transpose.ROTATE_90)
     # img_info = pillow.transpose_image(img_file_path, Image.Transpose.ROTATE_180)
     # img_info = pillow.transpose_image(img_file_path, Image.Transpose.ROTATE_270)
-    # ic(img_info)
 
     # ###############################################################
     # # 이미지에 글쓰기
     # ###############################################################
-    # new_image = pillow.draw_text_on_image(img_file_path, 500, 500, 'Hellow World', 30, 'orange')
+    # new_image = pillow.draw_text_on_image(img_file_path, 500, 500, 'Hellow World', 30, 'red')
     # ic(new_image)
 
     # ###############################################################
@@ -303,23 +304,23 @@ if __name__ == '__main__':
     #     new_image = pillow.apply_filter(img_file_path, filter)
     #     ic(new_image)
 
-    # ###############################################################
-    # # Merge Image
-    # ###############################################################
-    # row = 2
-    # column = 3
-    #
-    # # 빈 캔버스 이미지 객체 생성
-    # merge_image = pillow.merge_create_image(row, column, img_file_path)
-    #
-    # # 각 행/열의 이미지 복사
-    # for _row in range(row):  # 0, 1
-    #     for _column in range(column):  # 0, 1, 2
-    #         pillow.merge_paste_image(merge_image, _row, _column, img_file_path)
-    #
-    # # Merged된 이미지 파일 저장
-    # new_image = pillow.merge_save(merge_image, img_file_path)
-    # ic(new_image)
+    ###############################################################
+    # Merge Image
+    ###############################################################
+    row = 2
+    column = 3
+
+    # 빈 캔버스 이미지 객체 생성
+    merge_image = pillow.merge_create_image(row, column, img_file_path)
+
+    # 각 행/열의 이미지 복사
+    for _row in range(row):  # 0, 1
+        for _column in range(column):  # 0, 1, 2
+            pillow.merge_paste_image(merge_image, _row, _column, img_file_path)
+
+    # Merged된 이미지 파일 저장
+    new_image = pillow.merge_save(merge_image, img_file_path)
+    ic(new_image)
 
 
 
