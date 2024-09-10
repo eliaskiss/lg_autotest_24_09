@@ -55,6 +55,20 @@ class Pillow:
         img.save(path)
         return path
 
+    ######################################################
+    # Make Thumb Image
+    ######################################################
+    def make_thumbnail(self, img_file_path, width=300, height=300):
+        img = Image.open(img_file_path)
+        size = (width, height)
+        img.thumbnail(size)
+        dir = os.path.dirname(img_file_path)
+        file_name = os.path.basename(img_file_path)
+        path = os.path.join(dir, 'thumb_' + file_name) # image/buz.jpg --> image/thumb_buz.jpg
+        img.save(path)
+        return path
+
+
 if __name__ == '__main__':
     img_file_path = './image/buz.jpg'
 
