@@ -86,7 +86,51 @@ class Database:
             message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
             ic(message)
 
+    ################################################################
+    # Execute and Return All
+    ################################################################
+    def execute_and_return(self, sql, values=None):
+        try:
+            if self.conn is not None:
+                self.execute_only(sql, values)
+                data_list = self.cursor.fetchall()
+                return data_list
+            else:
+                ic('DB is not connected!!!')
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
 
+    ################################################################
+    # Execute and Return One
+    ################################################################
+    # select count(*) as cnt from elias where age = 20;
+    def execute_and_return_one(self, sql, values=None):
+        try:
+            if self.conn is not None:
+                self.execute_only(sql, values)
+                data = self.cursor.fetchone()
+                return data
+            else:
+                ic('DB is not connected!!!')
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
+
+    ################################################################
+    # Disconnect
+    ################################################################
+    def disconnect_db(self):
+        try:
+            if self.conn is not None:
+                self.conn.close()
+                self.conn = None
+                self.cursor = None
+            else:
+                ic('DB is not connected!!!')
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
 
 
 
