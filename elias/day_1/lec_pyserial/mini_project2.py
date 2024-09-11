@@ -95,7 +95,7 @@ def main():
             # Get Current Power Status
             elif value == 'ff':
                 response = 'OK01x' if is_power_on is True else 'OK00x'
-                ic(f'Changed power status: {is_power_on}')
+                ic(f'Current power status: {is_power_on}')
             # Wrong Value
             else:
                 response = f'NG{value}x'
