@@ -320,6 +320,34 @@ arial_font = Font(name='arial', size=14)
 ws['A3'] = 'Arial'
 ws['A3'].font = arial_font
 
+#####################################################################
+# Set Border Line
+#####################################################################
+# Cell Border
+# BORDER_NONE = None
+# BORDER_DASHDOT = 'dashDot'
+# BORDER_DASHDOTDOT = 'dashDotDot'
+# BORDER_DASHED = 'dashed'
+# BORDER_DOTTED = 'dotted'
+# BORDER_DOUBLE = 'double'
+# BORDER_HAIR = 'hair'
+# BORDER_MEDIUM = 'medium'
+# BORDER_MEDIUMDASHDOT = 'mediumDashDot'
+# BORDER_MEDIUMDASHDOTDOT = 'mediumDashDotDot'
+# BORDER_MEDIUMDASHED = 'mediumDashed'
+# BORDER_SLANTDASHDOT = 'slantDashDot'
+# BORDER_THICK = 'thick'
+# BORDER_THIN = 'thin'
+# openpyxl.styles.borders.BORDER_DOUBLE
+
+thin = Side(border_style='thin', color='000000')
+ws['B4'] = 'Thin'
+ws['B4'].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+double = Side(border_style='double', color='000000')
+ws['B6'] = 'Double'
+ws['B6'].border = Border(top=double, left=double, right=double, bottom=double)
+
 ################################################
 # Save Excel File
 ################################################
