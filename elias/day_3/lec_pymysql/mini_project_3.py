@@ -104,8 +104,8 @@ def put_data_to_db(excel_file_name):
           ') ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;'
     db.execute_and_commit(sql)
 
-    # todo: 엑셀의 row값들을 읽어서 DB에 해당 테이블에 삽입
-    for row in ws.iter_rows(min_row=6):
+    # 엑셀의 row값들을 읽어서 DB에 해당 테이블에 삽입
+    for row in ws.iter_rows(min_row=6, max_row=2591):
         station_number = row[0].value
         station_name = row[1].value
         region = row[2].value
@@ -117,11 +117,18 @@ def put_data_to_db(excel_file_name):
         qr_count = row[8].value
         proc_type = row[9].value
 
+        # Way I
         sql = (f'insert into {table_name} (station_number, station_name, region, address, latitude, longitude,'
                f'install_date, lcd_count, qr_count, proc_type) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);')
         values = (station_number, station_name, region, address, latitude, longitude, install_date, lcd_count,
                   qr_count, proc_type)
         db.execute_only(sql, values)
+
+        # # Way II
+        # sql = (f'insert into {table_name} (station_number, station_name, region, address, latitude, longitude,'
+        #        f'install_date, lcd_count, qr_count, proc_type) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);')
+        # values = [elem.value for elem in row]
+        # db.execute_only(sql, values)
 
     db.commit_only()
     db.disconnect_db()
@@ -148,8 +155,48 @@ def get_data_from_db(from_date, region, output_file_name):
     # Rename Worksheet
     ws.title = '대여소현황'
 
-    # todo: Header 생성
-    # ...
+    # Header 생성
+    ws['A1'] = '대여소\n번호'
+    ws.merge_cells('A1:A5')
+
+    wb['B1'] = '보관소(대여소)명'
+    ws.merge_cells('B1:B5')
+
+    ws['C1'] = '소재자(위치)'
+    ws.merge_cells('C1:F2')
+
+    ws['C3'] = '자치구'
+    ws.merge_cells('C3:C5')
+
+    ws['D3'] = '상세주소'
+    ws.merge_cells('D3:D5')
+
+    ws['E3'] = '위도'
+    ws.merge_cells('E3:E5')
+
+    ws['F3'] = '경도'
+    ws.merge_cells('F3:F5')
+
+    ws['G1'] = '설치시기'
+    ws.merge_cells('G1:G5')
+
+    ws['H1'] = '설치형태'
+    ws.merge_cells('H1:I1')
+
+    ws['H2'] = 'LCD'
+    ws.merge_cells('H2:H3')
+
+    ws['H4'] = '거치대수'
+    ws.merge_cells('H4:H5')
+
+    ws['I2'] = 'QR'
+    ws.merge_cells('I2:I3')
+
+    ws['I4'] = '거치대수'
+    ws.merge_cells('I4:I5')
+
+    ws['J1'] = '운영방식'
+    ws.merge_cells('J1:J5')
 
     # DB 객체 생성 후 연결
     db = Database(DB_URL, DB_USER, DB_PW, DB_NAME)
