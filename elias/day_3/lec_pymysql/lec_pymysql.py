@@ -29,7 +29,7 @@ class Database:
                                             user=self.user,
                                             password=self.passwd,
                                             db=self.db)
-                self.cursor = self.conn.cursor()    # row[0], row[1], row[2], ...
+                # self.cursor = self.conn.cursor()    # row[0], row[1], row[2], ...
                 self.cursor = self.conn.cursor(pymysql.cursors.DictCursor) # row['id'], row['reg_datetime'], row['name'], ...
 
             ic('DB is connected')
@@ -156,17 +156,37 @@ if __name__ == '__main__':
     ##################################################################################
     # Insert Data
     ##################################################################################
-    for i in range(10):
-        sql = f'insert into {table_name} (name, age) values(%s, %s);'
-        values = (f'{table_name}_{i+1}', (20 + i)) # elias_1, elias_2, ..., 20, 21, ...
-        # db.execute_and_commit(sql, values)
-        db.execute_only(sql, values)
-    db.commit_only()
+    # for i in range(10):
+    #     sql = f'insert into {table_name} (name, age) values(%s, %s);'
+    #     values = (f'{table_name}_{i+1}', (20 + i)) # elias_1, elias_2, ..., 20, 21, ...
+    #     # db.execute_and_commit(sql, values)
+    #     db.execute_only(sql, values)
+    # db.commit_only()
 
+    # name = "Elias Kim"
+    # age = 20
+    # # insert into elias (name, age) values("Elias Kim", 20);
+    # sql = f'insert into elias (name, age) values("{name}", {age});'
+    # db.execute_and_commit(sql)
+    #
+    # # DB 끊기
+    # db.disconnect_db()
 
-    # DB 끊기
-    db.disconnect_db()
+    ##################################################################################
+    # Get Data List from table
+    ##################################################################################
+    # sql = f'select * from {table_name};'
+    # data_list = db.execute_and_return(sql)
+    # for data in data_list:
+    #     ic(data)
 
+    ##################################################################################
+    # Get One Data from table
+    ##################################################################################
+    sql = f'select count(*) as cnt from {table_name};'
+    data = db.execute_and_return_one(sql)
+    ic(data)
+    ic(data['cnt'])
 
 
 
