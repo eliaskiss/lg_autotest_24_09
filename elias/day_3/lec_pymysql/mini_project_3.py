@@ -61,7 +61,7 @@ from lec_pymysql import Database
 # KEY `id` (`id`)
 # ) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-DB_URL = '139.150.80.99'
+DB_URL = '139.150.73.242'
 DB_USER = 'dbuser'
 DB_PW = 'dbuser'
 DB_NAME = 'lg_autotest'
