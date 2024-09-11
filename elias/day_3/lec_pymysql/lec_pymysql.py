@@ -203,9 +203,9 @@ if __name__ == '__main__':
     ##################################################################################
     # Delete data
     ##################################################################################
-    id = 2
-    sql = f'delete from {table_name} where id = {id};'
-    db.execute_and_commit(sql)
+    # id = 2
+    # sql = f'delete from {table_name} where id = {id};'
+    # db.execute_and_commit(sql)
 
 
 
