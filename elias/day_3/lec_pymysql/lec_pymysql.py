@@ -53,6 +53,35 @@ class Database:
                     self.cursor.execute(sql)
                 else:
                     self.cursor.execute(sql, values)
+            else:
+                ic('DB is not connected!!!')
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
+
+    ################################################################
+    # Execute And Commit (Insert, Update, delete, ...)
+    ################################################################
+    def execute_and_commit(self, sql, values=None):
+        try:
+            if self.conn is not None:
+                self.execute_only(sql, values)
+                self.conn.commit()
+            else:
+                ic('DB is not connected!!!')
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
+
+    ################################################################
+    # Commit Only
+    ################################################################
+    def commit_only(self):
+        try:
+            if self.conn is not None:
+                self.conn.commit()
+            else:
+                ic('DB is not connected!!!')
         except Exception as e:
             message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
             ic(message)
