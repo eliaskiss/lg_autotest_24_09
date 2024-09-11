@@ -3,9 +3,14 @@ from datetime import datetime
 from icecream import ic
 import time
 
+from openpyxl.styles.builtins import styles
+
 file_name = 'public_bicycle.xlsx'
 
 ic.configureOutput(includeContext=True)
+
+show_log = False
+
 
 ######################################################
 # Open Excel File
@@ -156,11 +161,3 @@ cell_datetime_value = cell_datetime.value.strftime('%Y-%m-%d %H:%M:%S')
 #####################################################################
 # ic(ws.column_dimensions['F'].hidden)
 # ic(ws.column_dimensions['G'].hidden)
-
-
-
-
-
-
-
-

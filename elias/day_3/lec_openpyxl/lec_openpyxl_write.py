@@ -3,6 +3,8 @@ from openpyxl.comments import Comment
 from openpyxl.drawing.image import Image
 from datetime import datetime, timedelta
 
+from six import assertRaisesRegex
+
 ################################################
 # Create new Excel Workbook
 ################################################
@@ -285,7 +287,65 @@ chart.series.append(series)
 # place the chart starting in cell E1
 ws.add_chart(chart, "E43")
 
+from openpyxl.styles import Font, Color, PatternFill, GradientFill, Alignment, Side, Border
+from openpyxl import styles
+
+#####################################################################
+# Create & Select Style Sheet
+#####################################################################
+wb.create_sheet('Style')
+ws = wb['Style']
+wb.active = 3
+
+#####################################################################
+# Set Color
+#####################################################################
+red_font = Font(color='FF0000')
+ws['A1'] = 'Red'
+ws['A1'].font = red_font
+
+#####################################################################
+# Set Font Comibation
+#####################################################################
+combi_font = Font(color='395B64', size=20, bold=True, italic=True,
+                  underline='singleAccounting', # underline: single, double, singleAccounting, doubleAccounting
+                  strike=True)
+ws['A2'] = 'Combination'
+ws['A2'].font = combi_font
+
+#####################################################################
+# Set Font Name
+#####################################################################
+arial_font = Font(name='arial', size=14)
+ws['A3'] = 'Arial'
+ws['A3'].font = arial_font
+
 ################################################
 # Save Excel File
 ################################################
 wb.save(file_name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
