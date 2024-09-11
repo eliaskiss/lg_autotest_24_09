@@ -72,8 +72,11 @@ ws['B16'] = 'World'
 ws.merge_cells(start_row=16, start_column=1, end_row=16, end_column=2)
 ws.unmerge_cells(start_row=16, start_column=1, end_row=16, end_column=2)
 
-
-
+################################################
+# Insert Image
+################################################
+img = Image('buz.jpg')
+ws.add_image(img, 'G1')
 
 ################################################
 # Save Excel File
