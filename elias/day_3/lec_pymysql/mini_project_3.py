@@ -159,7 +159,7 @@ def get_data_from_db(from_date, region, output_file_name):
     ws['A1'] = '대여소\n번호'
     ws.merge_cells('A1:A5')
 
-    wb['B1'] = '보관소(대여소)명'
+    ws['B1'] = '보관소(대여소)명'
     ws.merge_cells('B1:B5')
 
     ws['C1'] = '소재자(위치)'
@@ -203,16 +203,19 @@ def get_data_from_db(from_date, region, output_file_name):
     db.connect_db()
 
     # 조건에 맞는 데이터 가져오기
-    sql = 'select * from elias_bicycle where date(install_date) >= %s and region = %s;'
+    sql = f'select * from {table_name} where date(install_date) >= %s and region = %s;'
     values = (from_date, region)
     data_list = db.execute_and_return(sql, values)
 
-    # todo: data_list를 가지고 엑셀의 데이터 추가
-    # ...
+    # data_list를 가지고 엑셀의 데이터 추가
+    for data in data_list:
+        ws.append(data['station_number'], data['station_name'], data['region'], data['address'],
+                  data['latitude'], data['longitude'], data['install_date'], data['lcd_count'],
+                  data['qr_count'], data['proc_type'])
 
     wb.save(output_file_name)
 
 
 if __name__ == '__main__':
     put_data_to_db('public_bicycle.xlsx')
-    # get_data_from_db('2020-01-01', '서초구', 'new_excel.xlsx')
+    get_data_from_db('2020-01-01', '서초구', 'new_excel.xlsx')
