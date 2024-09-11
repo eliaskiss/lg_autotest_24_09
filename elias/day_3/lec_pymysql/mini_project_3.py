@@ -86,8 +86,10 @@ def put_data_to_db(excel_file_name):
     # DB 연결
     db.connect_db()
 
+    table_name = 'elias_bicycle'
+
     # Table 생성
-    sql = 'CREATE TABLE if not exists elias_bicycle ' \
+    sql = f'CREATE TABLE if not exists {table_name} ' \
           '(`id` INT(11) NOT NULL AUTO_INCREMENT, ' \
           '`reg_datetime` DATETIME DEFAULT CURRENT_TIMESTAMP(), ' \
           '`station_number` INT(11) DEFAULT NULL, ' \
