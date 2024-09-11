@@ -183,10 +183,22 @@ if __name__ == '__main__':
     ##################################################################################
     # Get One Data from table
     ##################################################################################
-    sql = f'select count(*) as cnt from {table_name};'
-    data = db.execute_and_return_one(sql)
-    ic(data)
-    ic(data['cnt'])
+    # sql = f'select count(*) as cnt from {table_name};'
+    # data = db.execute_and_return_one(sql)
+    # ic(data)
+    # ic(data['cnt'])
+
+    ##################################################################################
+    # Update data
+    ##################################################################################
+    id = 1
+    new_name = 'Hong Gildong'
+    new_age = 30
+
+    sql = (f'update {table_name} set name = %s, age = %s, reg_datetime = current_timestamp() '
+           f'where id = %s;')
+    values = (new_name, new_age, id)
+    db.execute_and_commit(sql, values)
 
 
 
