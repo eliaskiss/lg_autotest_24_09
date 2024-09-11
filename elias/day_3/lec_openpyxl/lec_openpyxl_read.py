@@ -58,10 +58,103 @@ cell_datetime_value = cell_datetime.value.strftime('%Y-%m-%d %H:%M:%S')
 ######################################################
 # Get Time Cell Value
 ######################################################
+cell_time = ws['B2596']
+# ic(type(cell_time.value))
+# ic(cell_time.value)
+cell_text_time = ws['B2597']
+# ic(type(cell_text_time.value))
+# ic(cell_text_time.value)
 
+#####################################################################
+# Get Percent Cell Value
+#####################################################################
+# cell_ratio = ws['B2599']
+# ic(type(cell_ratio.value))
+# ic(cell_ratio.value)
+# cell_text_ratio = ws['B2600']
+# ic(type(cell_text_ratio.value))
+# ic(cell_text_ratio.value)
 
+#####################################################################
+# Get Number Cell Value
+#####################################################################
+# cell_number = ws['B2602']
+# ic(type(cell_number.value))
+# ic(cell_number.value)
+# cell_text_number = ws['B2603']
+# ic(type(cell_text_number.value))
+# ic(cell_text_number.value)
+# cell_float = ws['B2604']
+# ic(type(cell_float.value))
+# ic(cell_float.value)
+# cell_with_text = ws['B2605']
+# ic(type(cell_with_text.value))
+# ic(cell_with_text.value)
 
+#####################################################################
+# Get Cell Color
+#####################################################################
+# fill_a6 = ws['A6'].fill
+# ic(fill_a6.fgColor.index)
+# ic(fill_a6.fgColor.type)
+# if fill_a6.fgColor.type == 'rgb':
+#     argb = fill_a6.fgColor.rgb
+#     ic(argb)
+#     argb = tuple(int(argb[i:i+2], 16) for i in range(0, len(argb), 2))
+#     ic(argb)
+# ic('-------------------------------------')
+# fill_b6 = ws['B6'].fill
+# ic(fill_b6.fgColor.index)
+# ic(fill_b6.fgColor.type)
+# if fill_b6.fgColor.type == 'rgb':
+#     argb = fill_b6.fgColor.rgb
+#     ic(argb)
+#     argb = tuple(int(argb[i:i+2], 16) for i in range(0, len(argb), 2))
+#     ic(argb)
 
+#####################################################################
+# Get Row Data
+#####################################################################
+# for row in ws.rows:
+#     row_values = [elem.value for elem in row]
+#     ic(row_values)
+
+# for index, row in enumerate(ws.rows):
+#     if index >= 5:
+#         row_values = [elem.value for elem in row]
+#         ic(row_values)
+#         break
+
+# for row in ws.iter_rows(min_row=6, max_row=2591):
+#     row_values = [elem.value for elem in row]
+#     ic(row_values)
+
+#####################################################################
+# Get Column Data
+#####################################################################
+# for col in ws.columns:
+#     col_values = [elem.value for elem in col]
+#     ic(col_values)
+#     break
+
+#####################################################################
+# Get Data with sliding
+#####################################################################
+# for row in ws['A6':'J20']:
+#     row_values = [elem.value for elem in row]
+#     ic(row_values)
+
+#####################################################################
+# Get Hidden Row
+#####################################################################
+# ic(ws.row_dimensions[6].hidden)
+# ic(ws.row_dimensions[7].hidden)
+
+#####################################################################
+# Get Hidden Column
+#####################################################################
+# ic(ws.column_dimensions['F'].hidden)
+# ic(ws.column_dimensions['G'].hidden)
 
 
 
