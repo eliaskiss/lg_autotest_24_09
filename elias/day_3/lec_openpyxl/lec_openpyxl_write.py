@@ -348,6 +348,15 @@ double = Side(border_style='double', color='000000')
 ws['B6'] = 'Double'
 ws['B6'].border = Border(top=double, left=double, right=double, bottom=double)
 
+#####################################################################
+# Set Cell Fill
+#####################################################################
+ws['A7'] = 'Solid'
+ws['A7'].fill = PatternFill('solid', fgColor='DDDDDD')
+
+ws['A8'] = 'Gradient'
+ws['A8'].fill = GradientFill(stop=('000000', 'FFFFFF'))
+
 ################################################
 # Save Excel File
 ################################################
