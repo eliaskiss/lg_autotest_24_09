@@ -209,13 +209,54 @@ def get_data_from_db(from_date, region, output_file_name):
 
     # data_list를 가지고 엑셀의 데이터 추가
     for data in data_list:
-        ws.append(data['station_number'], data['station_name'], data['region'], data['address'],
-                  data['latitude'], data['longitude'], data['install_date'], data['lcd_count'],
-                  data['qr_count'], data['proc_type'])
+        # # Way I
+        # ws.append([data['station_number'], data['station_name'], data['region'], data['address'],
+        #           data['latitude'], data['longitude'], data['install_date'], data['lcd_count'],
+        #           data['qr_count'], data['proc_type']])
+
+        # Way II
+        ws.append([elem for elem in list(data.values())[2:]])
+
+    # Excel Styling
+    thin_border = Border(left=Side(style='thin'),
+                         right=Side(style='thin'),
+                         top=Side(style='thin'),
+                         bottom=Side(style='thin'))
+
+    bold_white_font = Font(bold=True,
+                           size=12,
+                           italic=None,
+                           underline=None,
+                           strike=None,
+                           color='FFFFFF')
+
+    background_fill = PatternFill(start_color='525E75',
+                                  end_color='525E75',
+                                  fill_type='solid')
+
+    # Header Style 적용
+    for row in ws.iter_rows(max_row=5):
+        for cell in row:
+            cell.fill = background_fill
+            cell.font = bold_white_font
+
+    # 테두리 적용 : thin_border
+    for col in ws.columns:
+        for cell in col:
+            cell.alignment = Alignment(wrap_text=True, horizontal='center', vertical='center')
+            cell.border = thin_border
+
+    dims = {}
+    for row in ws.rows:
+        for cell in row:
+            if cell.value:
+                dims[cell.column] = max((dims.get(cell.column, 0), len(str(cell.value)) * 2))
+    for col, value in dims.items():
+        ws.column_dimensions[chr(ord('A') + (col - 1))].width = value  # A, B, C, D, <-- 1, 2, 3, 4
 
     wb.save(output_file_name)
 
 
 if __name__ == '__main__':
-    put_data_to_db('public_bicycle.xlsx')
+    # put_data_to_db('public_bicycle.xlsx')
     get_data_from_db('2020-01-01', '서초구', 'new_excel.xlsx')
