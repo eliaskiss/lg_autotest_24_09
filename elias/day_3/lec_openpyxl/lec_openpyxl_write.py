@@ -51,11 +51,28 @@ for _ in range(10):
 # Insert Datetime
 ################################################
 ws['A14'] = datetime.now()
+# ws['A14'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 ws['B14'] = datetime.now() + timedelta(days=1) # 내일
 ws['C14'] = datetime.now() - timedelta(days=1) # 어제
 # ws['C14'] = datetime.now() + timedelta(days=-1) # 어제
 ws['D14'] = datetime.now() + timedelta(hours=1) # 1시간 후
 ws['E14'] = '2024-09-11'
+
+################################################
+# Merge/Unmerge Target Cell
+################################################
+ws['A16'] = 'Hello'
+ws['B16'] = 'World'
+
+# # Way I
+# ws.merge_cells(range_string='A16:B16')
+# ws.unmerge_cells('A16:B16')
+
+# Way II
+ws.merge_cells(start_row=16, start_column=1, end_row=16, end_column=2)
+ws.unmerge_cells(start_row=16, start_column=1, end_row=16, end_column=2)
+
+
 
 
 ################################################
