@@ -191,15 +191,21 @@ if __name__ == '__main__':
     ##################################################################################
     # Update data
     ##################################################################################
-    id = 1
-    new_name = 'Hong Gildong'
-    new_age = 30
+    # id = 1
+    # new_name = 'Hong Gildong'
+    # new_age = 30
+    #
+    # sql = (f'update {table_name} set name = %s, age = %s, reg_datetime = current_timestamp() '
+    #        f'where id = %s;')
+    # values = (new_name, new_age, id)
+    # db.execute_and_commit(sql, values)
 
-    sql = (f'update {table_name} set name = %s, age = %s, reg_datetime = current_timestamp() '
-           f'where id = %s;')
-    values = (new_name, new_age, id)
-    db.execute_and_commit(sql, values)
-
+    ##################################################################################
+    # Delete data
+    ##################################################################################
+    id = 2
+    sql = f'delete from {table_name} where id = {id};'
+    db.execute_and_commit(sql)
 
 
 
