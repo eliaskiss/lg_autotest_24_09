@@ -153,6 +153,15 @@ if __name__ == '__main__':
           f'engine=innodb default charset=utf8mb4 collate=utf8mb4_general_ci;'
     db.execute_and_commit(sql)
 
+    ##################################################################################
+    # Insert Data
+    ##################################################################################
+    for i in range(10):
+        sql = f'insert into {table_name} (name, age) values(%s, %s);'
+        values = (f'{table_name}_{i+1}', (20 + i)) # elias_1, elias_2, ..., 20, 21, ...
+        # db.execute_and_commit(sql, values)
+        db.execute_only(sql, values)
+    db.commit_only()
 
 
     # DB 끊기
