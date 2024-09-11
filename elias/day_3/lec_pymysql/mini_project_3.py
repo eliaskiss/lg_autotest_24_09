@@ -105,7 +105,26 @@ def put_data_to_db(excel_file_name):
     db.execute_and_commit(sql)
 
     # todo: 엑셀의 row값들을 읽어서 DB에 해당 테이블에 삽입
-    # ...
+    for row in ws.iter_rows(min_row=6):
+        station_number = row[0].value
+        station_name = row[1].value
+        region = row[2].value
+        address = row[3].value
+        latitude = row[4].value
+        longitude = row[5].value
+        install_date = row[6].value
+        lcd_count = row[7].value
+        qr_count = row[8].value
+        proc_type = row[9].value
+
+        sql = (f'insert into {table_name} (station_number, station_name, region, address, latitude, longitude,'
+               f'install_date, lcd_count, qr_count, proc_type) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);')
+        values = (station_number, station_name, region, address, latitude, longitude, install_date, lcd_count,
+                  qr_count, proc_type)
+
+
+
+
 
     db.disconnect_db()
 
@@ -152,4 +171,4 @@ def get_data_from_db(from_date, region, output_file_name):
 
 if __name__ == '__main__':
     put_data_to_db('public_bicycle.xlsx')
-    get_data_from_db('2020-01-01', '서초구', 'new_excel.xlsx')
+    # get_data_from_db('2020-01-01', '서초구', 'new_excel.xlsx')
