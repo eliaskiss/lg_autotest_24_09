@@ -71,7 +71,7 @@ table_name = '자신의계정_bicycle'
 
 ###################################################################################################
 # Task 1
-# public_bicycle.xlsx 파일을 읽어서, DB의 자신의계정_bicycle의 테이블에 넣기
+# public_bicycle.xlsx 파일을 읽어서, DB의 자신의계정_bicycle의 테이블에 넣기 (ex: elias_bicycle)
 ###################################################################################################
 def put_data_to_db(excel_file_name):
     # Load wb from excel file
@@ -103,6 +103,9 @@ def put_data_to_db(excel_file_name):
           'KEY `id` (`id`)' \
           ') ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;'
     db.execute_and_commit(sql)
+
+    # todo: 엑셀의 row값들을 읽어서 DB에 해당 테이블에 삽입
+    # ...
 
     db.disconnect_db()
 
