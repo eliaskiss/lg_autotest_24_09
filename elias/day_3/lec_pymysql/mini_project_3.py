@@ -66,7 +66,7 @@ DB_USER = 'dbuser'
 DB_PW = 'dbuser'
 DB_NAME = 'lg_autotest'
 
-table_name = '자신의계정_bicycle'
+table_name = 'elias_bicycle'
 
 
 ###################################################################################################
@@ -121,13 +121,10 @@ def put_data_to_db(excel_file_name):
                f'install_date, lcd_count, qr_count, proc_type) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);')
         values = (station_number, station_name, region, address, latitude, longitude, install_date, lcd_count,
                   qr_count, proc_type)
+        db.execute_only(sql, values)
 
-
-
-
-
+    db.commit_only()
     db.disconnect_db()
-
 
 ###################################################################################################
 # Task 2
