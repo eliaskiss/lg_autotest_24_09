@@ -37,7 +37,33 @@ class Database:
             message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
             ic(message)
 
+    ################################################################
+    # Execute Only
+    ################################################################
+    def execute_only(self, sql, values=None):
+        try:
+            # select * from elias;
+            # select * from elias where name = "kim" and age = 20;
+            # name = "kim"
+            # age = 20
+            # sql = 'select * from elias where name = %s, and age = %s;'
+            # values = (name, age)
+            if self.conn is not None:
+                if values is None:
+                    self.cursor.execute(sql)
+                else:
+                    self.cursor.execute(sql, values)
+        except Exception as e:
+            message = f'--> Exception is {e} (Line: {sys.exc_info()[-1].tb_lineno})'
+            ic(message)
 
+
+
+
+
+if __name__ == '__main__':
+    db = Database(host='139.150.73.242', user='dbuser', passwd='dbuser', db='lg_autotest')
+    db.connect_db()
 
 
 
