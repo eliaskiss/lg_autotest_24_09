@@ -86,8 +86,6 @@ def put_data_to_db(excel_file_name):
     # DB 연결
     db.connect_db()
 
-    table_name = 'elias_bicycle'
-
     # Table 생성
     sql = f'CREATE TABLE if not exists {table_name} ' \
           '(`id` INT(11) NOT NULL AUTO_INCREMENT, ' \
@@ -134,7 +132,8 @@ def get_data_from_db(from_date, region, output_file_name):
     # Rename Worksheet
     ws.title = '대여소현황'
 
-    # Header 생성
+    # todo: Header 생성
+    # ...
 
     # DB 객체 생성 후 연결
     db = Database(DB_URL, DB_USER, DB_PW, DB_NAME)
@@ -144,6 +143,9 @@ def get_data_from_db(from_date, region, output_file_name):
     sql = 'select * from elias_bicycle where date(install_date) >= %s and region = %s;'
     values = (from_date, region)
     data_list = db.execute_and_return(sql, values)
+
+    # todo: data_list를 가지고 엑셀의 데이터 추가
+    # ...
 
     wb.save(output_file_name)
 
