@@ -55,19 +55,19 @@ cell_datetime = ws['G6']
 cell_datetime_value = cell_datetime.value.strftime('%Y-%m-%d %H:%M:%S')
 # ic(cell_datetime_value)
 
-######################################################
-# Get Time Cell Value
-######################################################
-cell_time = ws['B2596']
+# #####################################################
+# # Get Time Cell Value
+# #####################################################
+# cell_time = ws['B2596']
 # ic(type(cell_time.value))
 # ic(cell_time.value)
-cell_text_time = ws['B2597']
+# cell_text_time = ws['B2597']
 # ic(type(cell_text_time.value))
 # ic(cell_text_time.value)
 
-#####################################################################
-# Get Percent Cell Value
-#####################################################################
+# #####################################################################
+# # Get Percent Cell Value
+# #####################################################################
 # cell_ratio = ws['B2599']
 # ic(type(cell_ratio.value))
 # ic(cell_ratio.value)
@@ -128,6 +128,7 @@ cell_text_time = ws['B2597']
 # for row in ws.iter_rows(min_row=6, max_row=2591):
 #     row_values = [elem.value for elem in row]
 #     ic(row_values)
+#     break
 
 #####################################################################
 # Get Column Data
