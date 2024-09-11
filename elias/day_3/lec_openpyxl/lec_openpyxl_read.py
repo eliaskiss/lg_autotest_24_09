@@ -55,7 +55,9 @@ cell_datetime = ws['G6']
 cell_datetime_value = cell_datetime.value.strftime('%Y-%m-%d %H:%M:%S')
 # ic(cell_datetime_value)
 
-
+######################################################
+# Get Time Cell Value
+######################################################
 
 
 
