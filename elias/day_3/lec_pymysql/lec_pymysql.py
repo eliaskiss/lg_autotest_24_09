@@ -135,8 +135,28 @@ class Database:
 
 
 if __name__ == '__main__':
+    # DB 객체 생성 및 연결
     db = Database(host='139.150.73.242', user='dbuser', passwd='dbuser', db='lg_autotest')
     db.connect_db()
+
+    table_name = 'elias'
+
+    ##################################################################################
+    # Create Table
+    ##################################################################################
+    sql = f'create table if not exists {table_name} (' \
+          f'id int(11) not null auto_increment, ' \
+          f'reg_datetime datetime default current_timestamp(), ' \
+          f'name varchar(32) default null, ' \
+          f'age int(11) default null, ' \
+          f'key id (id)) ' \
+          f'engine=innodb default charset=utf8mb4 collate=utf8mb4_general_ci;'
+    db.execute_and_commit(sql)
+
+
+
+    # DB 끊기
+    db.disconnect_db()
 
 
 
