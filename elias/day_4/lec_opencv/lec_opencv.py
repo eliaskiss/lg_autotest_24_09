@@ -65,8 +65,9 @@ if __name__ == '__main__':
         ################################################################
         # Capture Image(Snapshot)
         ################################################################
-        file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%s")}.png'
+        file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}.png'
         ic(cam.capture_image(file_name))
+
         
         
         
