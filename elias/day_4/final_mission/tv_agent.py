@@ -39,7 +39,7 @@ print('Program is running...')
 try:
     while True:
         # Todo: 구현부분
-        readed = ser.readuntilExitCode(RETURN_CODE)
+        readed = ser.readUntilExitCode(RETURN_CODE)
         print('#' * 100)
 
         # 읽어온 데이터 출력
@@ -127,4 +127,4 @@ except Exception as e:
     print(e)
 finally:
     # 포트닫기
-    ser.close()
+    ser.closePort()

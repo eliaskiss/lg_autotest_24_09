@@ -62,7 +62,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 COM_PORT = 'COM3'
-DB_URL = '139.150.80.99'
+DB_URL = '139.150.73.242'
 DB_USER = 'dbuser'
 DB_PW = 'dbuser'
 DB_NAME = 'lg_autotest' # !! 자신의 DB이름
@@ -98,7 +98,8 @@ class MainDialog(QDialog):
     def open_serial(self):
         try:
             serial_port = self.main_ui.cb_serial_port.currentText()
-            self.ser = MySerial(serial_port)
+            self.ser = MySerial()
+            self.ser.openSerial(serial_port)
             QMessageBox.information(self, 'Information', f'{serial_port} is opened.', QMessageBox.Ok)
             self.main_ui.gb_serial.setEnabled(True)
             self.main_ui.btn_open_serial.setEnabled(False)
@@ -109,7 +110,7 @@ class MainDialog(QDialog):
 
     def close_serial(self):
         try:
-            self.ser.close()
+            self.ser.closePort()
             self.ser = None
             QMessageBox.information(self, 'Information', f'Serial post is closed.', QMessageBox.Ok)
             self.main_ui.gb_serial.setEnabled(False)
