@@ -83,23 +83,13 @@ class WebCam:
 
             cv2.imshow('frame', frame)
 
-            if cv2.waitkey(100) == ord('q'):
+            if cv2.waitKey(100) == ord('q'):
                 break
 
         # 객체핸들 릴리즈
         cap.release()
         # cv2.destroyAllWindows()
         cv2.destroyWindow('frame')
-
-
-
-
-
-
-
-
-
-
 
 
 
