@@ -17,7 +17,7 @@ chrome_option.add_argument('window-size=1920x1080')
 chrome_option.add_argument('disable-gpu')
 
 # driver = webdriver.Chrome('chromedriver.exe', options=chrome_option)
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install(), options=chrome_option))
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install(), options=chrome_option))
 
 # Selenium 4.6 버전이후
 driver = webdriver.Chrome(options=chrome_option)
@@ -125,8 +125,6 @@ for _ in range(total_page):
             ic(message)
 
     next_link.click()
-
-
 
 
 
