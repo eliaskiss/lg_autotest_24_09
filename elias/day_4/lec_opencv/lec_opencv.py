@@ -133,7 +133,8 @@ class WebCam:
             # 동영상파일에 Frame 저장
             out.write(frame)
 
-            if cv2.waitKey(int(1000/fps)) == ord('q'):
+            # if cv2.waitKey(int(1000/fps)) == ord('q'):
+            if cv2.waitKey(1) == ord('q'):
                 break
 
         # 객체핸들 릴리즈
@@ -141,8 +142,32 @@ class WebCam:
         # cv2.destroyAllWindows()
         cv2.destroyWindow('frame')
 
+    #################################################################
+    # Play Video File
+    #################################################################
+    def play_video(self, file_name):
+        # 웹캠 객체생성
+        cap = cv2.VideoCapture(file_name)
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        ic(fps)
 
+        while True:
+            # 현재 영상 캡쳐
+            ret, frame = cap.read()
 
+            # 캡쳐 실패시 실행중단
+            if ret is False:
+                break
+
+            cv2.imshow('frame', frame)
+
+            if cv2.waitKey(int(1000/fps)) == ord('q'):
+                break
+
+        # 객체핸들 릴리즈
+        cap.release()
+        # cv2.destroyAllWindows()
+        cv2.destroyWindow('frame')
 
 
 if __name__ == '__main__':
@@ -171,7 +196,11 @@ if __name__ == '__main__':
         # cam.capture_video(flip=1)
         # cam.capture_video(isMono=True, flip=1)
 
-        
+        ################################################################
+        # Record Video Stream
+        ################################################################
+        file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}'
+        cam.record_video(file_name, fps=15)
         
         
 
