@@ -2,9 +2,6 @@ import cv2
 from icecream import ic
 from datetime import datetime
 
-from elias.day_4.lec_pyqt5.lec_pyqt5 import filename
-
-
 class WebCam:
     def __init__(self, portNum=None):
         self.port_num = portNum
@@ -55,13 +52,24 @@ class WebCam:
 
         return ret, file_name
 
-
-
-
 if __name__ == '__main__':
     cam = WebCam()
     port_list = cam.get_valid_camera_list()
     ic(port_list)
+
+    if len(port_list) > 0:
+        # 첫번째 웹캠을 선택
+        port_num = port_list[0]
+        cam.set_port(port_num)
+
+        ################################################################
+        # Capture Image(Snapshot)
+        ################################################################
+        file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%s")}.png'
+        ic(cam.capture_image(file_name))
+        
+        
+        
 
 
 
