@@ -206,12 +206,13 @@ class MainDialog(QDialog):
     # For Thread
     def start_thread(self):
         try:
+            max_count = 100
             self.main_ui.progressBar.setMinimum(0)
-            self.main_ui.progressBar.setMaximum(100)
+            self.main_ui.progressBar.setMaximum(max_count)
             self.main_ui.progressBar.setValue(0)
 
             interval = 0.1
-            self.my_thread = SomethingThread(None, interval)
+            self.my_thread = SomethingThread(None, interval, max_count)
             self.my_thread.logSignal.connect(self.add_log)
             self.my_thread.stopSignal.connect(self.thread_is_stopped)
             self.my_thread.countSignal.connect(self.count)
@@ -238,6 +239,7 @@ class MainDialog(QDialog):
     @pyqtSlot()
     def thread_is_stopped(self):
         self.set_enable_buttons(True)
+        self.main_ui.progressBar.setValue(0)
 
     @pyqtSlot(str)
     def add_log(self, message):
@@ -270,11 +272,12 @@ class SomethingThread(QThread):
     countSignal = pyqtSignal(int)
     stopSignal = pyqtSignal()
 
-    def __init__(self, param, interval=0.5):
+    def __init__(self, param, interval=0.5, max_count=100):
         super(self.__class__, self).__init__()
         self.param = param
         self.isRunning = True
         self.interval = interval
+        self.max_count = max_count
 
     def run(self):
         self.logSignal.emit('Thread is started')
@@ -284,7 +287,8 @@ class SomethingThread(QThread):
             self.countSignal.emit(count)
             count += 1
 
-            if count > 100:
+            # if count > 100:
+            if count > self.max_count:
                 break
 
         self.logSignal.emit('Thread is stopped')
