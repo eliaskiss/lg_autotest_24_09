@@ -196,15 +196,16 @@ if __name__ == '__main__':
         # cam.capture_video(flip=1)
         # cam.capture_video(isMono=True, flip=1)
 
-        ################################################################
-        # Record Video Stream
-        ################################################################
-        file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}'
-        cam.record_video(file_name, fps=15)
-        
-        
+        # ################################################################
+        # # Record Video Stream
+        # ################################################################
+        # file_name = f'{datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}'
+        # cam.record_video(file_name, fps=15)
 
-
+        # ################################################################
+        # # Play Video Stream
+        # ################################################################
+        # cam.play_video('2024_09_12_14_49_30.avi')
 
 
 
