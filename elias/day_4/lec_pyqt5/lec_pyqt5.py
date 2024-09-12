@@ -257,11 +257,12 @@ class MainDialog(QDialog):
     ###########################################################################################
 
     def close_dialog(self):
+        # self.close()
         sys.exit(0)
 
     # ESC 무시
-    def key_press_event(self, event):
-        if not event.key() == Qt.Key_Escape:
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
             pass
 
 class SomethingThread(QThread):
